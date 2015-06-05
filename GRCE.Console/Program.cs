@@ -4,9 +4,11 @@
     using System.IO;
     using System.Linq;
 
-    using Console = System.Console;
-
+    using GRCE.Domain;
+    using GRCE.Domain.Extensions;
     using GRCE.Domain.Models;
+
+    using Console = System.Console;
 
     public class Program
     {
@@ -19,15 +21,25 @@
                 return;
             }
 
-            var pipeRecords = ReadRecordsFromFile(args[0], " | ");
-            var commaRecords = ReadRecordsFromFile(args[1], ", ");
-            var spaceRecord = ReadRecordsFromFile(args[2], " ");
+            var pipeRecords = ReadRecordsFromFile(args[0], Constants.RecordStringDelimeters.PipeDelimter);
+            var commaRecords = ReadRecordsFromFile(args[1], Constants.RecordStringDelimeters.CommaDelimter);
+            var spaceRecord = ReadRecordsFromFile(args[2], Constants.RecordStringDelimeters.SpaceDelimter);
 
             var allRecords = new List<Record>(pipeRecords);
             allRecords.AddRange(commaRecords);
             allRecords.AddRange(spaceRecord);
 
-            OutputRecords(allRecords);
+            Console.WriteLine("\nRecords sorted by gender\n");
+
+            OutputRecords(allRecords.OrderByGender());
+
+            Console.WriteLine("\nRecords sorted by birth date\n");
+
+            OutputRecords(allRecords.OrderByDob());
+
+            Console.WriteLine("\nRecords sorted by last name\n");
+
+            OutputRecords(allRecords.OrderByLastName());
 
 #if DEBUG
             Console.ReadLine();
@@ -38,6 +50,8 @@
         {
             if (!File.Exists(fileName))
             {
+                Console.WriteLine(string.Format("File {0} does not exist", fileName));
+
                 return Enumerable.Empty<Record>();
             }
 
