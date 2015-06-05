@@ -9,7 +9,7 @@
     {
         public ParseRecordResult ParseString(string recordString, string[] delimiters)
         {
-            return Record.CreateRecordFromString(recordString, delimiters);
+            return Record.ParseRecordFromString(recordString, delimiters);
         }
 
         public IEnumerable<Record> GetStoredRecords()

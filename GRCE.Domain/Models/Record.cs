@@ -49,7 +49,7 @@
             }
         }
 
-        public static ParseRecordResult CreateRecordFromString(string recordString, string[] delimiters)
+        public static ParseRecordResult ParseRecordFromString(string recordString, string[] delimiters)
         {
             var recordVals = recordString.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
