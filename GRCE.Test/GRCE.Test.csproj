@@ -42,11 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="RecordEqaulityComparer.cs" />
+    <Compile Include="RecordTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GRCE.Console\GRCE.Console.csproj">
+      <Project>{54220c37-86a3-4d1a-a622-65bf8284dcdb}</Project>
+      <Name>GRCE.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GRCE.Domain\GRCE.Domain.csproj">
+      <Project>{567bb740-9350-42f1-b193-4f76b635e2e5}</Project>
+      <Name>GRCE.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GRCE.Web\GRCE.Web.csproj">
+      <Project>{1205fedd-94fc-4b45-95f8-d789caa7bddd}</Project>
+      <Name>GRCE.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
