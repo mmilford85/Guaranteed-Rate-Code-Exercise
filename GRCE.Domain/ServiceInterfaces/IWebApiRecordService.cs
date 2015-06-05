@@ -6,7 +6,7 @@
 
     public interface IWebApiRecordService : IRecordService
     {
-        IEnumerable<Record> GetStoredRecords();
+        IEnumerable<Record> GetRecords();
 
         void AddRecord(Record record);
     }

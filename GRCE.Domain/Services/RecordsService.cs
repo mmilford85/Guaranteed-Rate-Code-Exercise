@@ -7,19 +7,21 @@
 
     public class RecordsService : IRecordService, IWebApiRecordService
     {
+        private readonly List<Record> _recordsList = new List<Record>(); 
+
         public ParseRecordResult ParseString(string recordString, string[] delimiters)
         {
             return Record.ParseRecordFromString(recordString, delimiters);
         }
 
-        public IEnumerable<Record> GetStoredRecords()
+        public IEnumerable<Record> GetRecords()
         {
-            throw new System.NotImplementedException();
+            return this._recordsList;
         }
 
         public void AddRecord(Record record)
         {
-            throw new System.NotImplementedException();
+            this._recordsList.Add(record);
         }
     }
 }

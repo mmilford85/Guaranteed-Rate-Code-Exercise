@@ -7,11 +7,15 @@
     using GRCE.Domain;
     using GRCE.Domain.Extensions;
     using GRCE.Domain.Models;
+    using GRCE.Domain.ServiceInterfaces;
+    using GRCE.Domain.Services;
 
     using Console = System.Console;
 
     public class Program
     {
+        private static IRecordService _recordService = new RecordsService();
+
         public static void Main(string[] args)
         {
             if (args.Length != 3)
@@ -60,7 +64,7 @@
             var fileLines = File.ReadAllLines(fileName);
             var records = new List<Record>(fileLines.Length);
 
-            foreach (var parseResult in fileLines.Select(line => Record.ParseRecordFromString(line, delimiterArray)))
+            foreach (var parseResult in fileLines.Select(line => _recordService.ParseString(line, delimiterArray)))
             {
                 if (parseResult.IsValid)
                 {
@@ -81,7 +85,7 @@
             {
                 Console.WriteLine(
                     string.Format(
-                        "\nRecord:\nFirst Name: {0}\nLast Name: {1}\nGender: {2}\nFavorite Color: {3}\nDate of Birth: {4}",
+                        "\nRecord:\nFirst Name: {0}\nLast Name: {1}\nGender: {2}\nFavorite Color: {3}\nDate of Birth: {4}\n",
                         record.FirstName,
                         record.LastName,
                         record.GenderDisplayString,
